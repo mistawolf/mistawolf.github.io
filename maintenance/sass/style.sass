@@ -1,0 +1,103 @@
+/* The version of Bourbon used in this Pen was 4.* */
+@import "bourbon"
+
+$bg: adjust-hue(#25313e, 0%)
+$recessed: desaturate(lighten($bg, 20%), 5%)//#6c7886
+
+body
+  background: $bg
+  color: #fff
+  font-family: 'Proxima Nova', 'Helvetica Neue', helvetica, arial, sans-serif
+  font-weight: 300
+  font-size: 14px
+  line-height: 1.5
+  padding-top: 2rem
+
+footer
+  text-align: center
+  img
+    width: 30px
+    height: auto
+    opacity: 0.35
+  small
+    color: $recessed
+    font-size: .9rem
+
+h1
+  color: $recessed
+  font-size: 2.4rem
+  text-align: center
+  letter-spacing: 0.3rem
+  text-transform: uppercase
+  margin-bottom: 1rem
+  line-height: 1
+
+p
+  text-align: center
+  margin-bottom: 2rem
+
+$close-btn-bg: #f55551
+$minimize-btn-bg: #f6b73e
+$maximize-btn-bg: #32c146
+$command-colour: $maximize-btn-bg
+$btn-size: 12px
+$btn-left-offset: 18px
+$btn-inner-margin: 8px
+  
+.window
+  width: 80%
+  margin: 0 auto 2rem
+  box-shadow: 0 .25rem .5rem darken($bg, 10%)
+  border-radius: 0 0 .1rem .1rem
+
+.bar
+  background: #191919
+  height: $btn-size * 3
+  border-radius: .5rem .5rem 0 0
+  
+%btn
+  width: $btn-size
+  height: $btn-size
+  border-radius: 100%
+  display: block
+  
+.btn
+  @extend %btn
+  background: $minimize-btn-bg
+  position: relative
+  margin-left: $btn-left-offset + $btn-size + $btn-inner-margin
+  top: $btn-size
+  
+  &::before, &::after
+    @extend %btn
+    content: ' '
+    position: absolute
+  &::before
+    background: $close-btn-bg
+    margin-left: ($btn-size + $btn-inner-margin) * -1
+  &::after
+    background: $maximize-btn-bg
+    margin-left: $btn-size + $btn-inner-margin
+
+.body
+  height: 10rem
+  background: #232323
+  padding: $btn-left-offset
+  pre
+    margin: 0
+  .pulse
+    @include animation(pulse 1s ease-in-out infinite)
+      
+@include keyframes(pulse)
+  0%
+    opacity: 0
+  50%
+    opacity: 1
+  100%
+    opacity: 0
+  
+.command
+  color: $command-colour
+
+.comment
+  opacity: .5
